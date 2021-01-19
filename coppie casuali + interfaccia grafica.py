@@ -1,7 +1,7 @@
 from random import randint
-nome = input("come vuoi chiamare il nuovo file?...") 
+nome = input("come vuoi chiamare il nuovo file?(inserire ".txt" alla fine...") 
 print("creazione del file:",nome)
-f = open("nome.txt", 'w')
+f = open(nome, 'w')
 
 dati = ""
 
@@ -26,7 +26,7 @@ import matplotlib.pyplot as plt
 import tkinter as tk
 
 
-f = open("nome.txt", 'r')
+f = open(nome, 'r')
 
 coordX = []
 coordY = []
@@ -70,7 +70,7 @@ riquadro.pack()
 richiesta_grafico = Entry(root)
 riquadro.create_window(200, 140, window=richiesta_grafico)
 
-scritta=Label(root, text="enter the name of the file")
+scritta=Label(root, text="inserisci il nome del file")
 riquadro.create_window(200,110, window=scritta)
 
 
@@ -84,7 +84,7 @@ def getGraphRoot():
         plt.ylabel(nome)
         plt.show()
     else:
-        scritta_errore = tk.Label(root, text= "nome file errato" )
+        scritta_errore = tk.Label(root, text= "nome file errato, assicurati di aver inserito .txt alla fine" )
         riquadro.create_window(200, 230, window=scritta_errore)
 
 
