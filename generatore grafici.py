@@ -81,7 +81,7 @@ riquadro.pack()
 scritta=Label(root, text="inserisci la directory del file da aprire", bg= "dark sea green")
 riquadro.create_window(450,110, window=scritta)
 
-#button 1 permette all'utente di generare il grafico.
+#button 1 permette all'utente, nel caso non avesse un grafico, di generarlo.
 button1 = tk.Button(root, text="genera un grafico", command=genera_grafico, bg= "NavajoWhite2")
 riquadro.create_window(55, 15, window=button1)
 
