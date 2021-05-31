@@ -1,4 +1,4 @@
-#Lavoro a cura di: Avallone Enrico, Ippolito Gabriele, Lastrucci Davide, Migliaccio Giovanni.
+#Lavoro a cura di: Avallone Enrico, Ippolito Gabriele, Lastrucci Davide.
 
 
 #Per utilizzare il codice è necessario che tutti gli elementi scaricati siano presenti nella cartella "Downloads".
@@ -14,10 +14,10 @@ import tkinter as tk
 from tkinter import *
 from tkinter import font , messagebox
 from PIL import Image, ImageTk
-from tkinter.filedialog import asksaveasfile
+import time
 
 
-#estrazione versi dai file .txt
+#estraggo i versi dai file .txt
 
 a = open("Downloads\cinq1.txt")
 line = csv.reader(a)
@@ -32,7 +32,7 @@ line = csv.reader(c)
 v3 = list(line)
 
 
-#interfaccia
+#configuro l'interfaccia
 
 root = Tk()
 riquadro = tk.Canvas(root, width = 600, height = 300, bg="dark sea green")
@@ -59,7 +59,7 @@ lunghezza2 = len(v2)
 lunghezza3 = len(v3)
 
 
-#funzioni
+#definisco le funzioni
 
 def genera_haiku():
     
@@ -88,15 +88,23 @@ def cambia_rigo3():
     riquadro2.itemconfig(scritta3, text=str(*verso3))
 
 
+def cancella_haiku():
+    riquadro2.itemconfig(scritta1, text="")
+    riquadro2.itemconfig(scritta2, text="")
+    riquadro2.itemconfig(scritta3, text="")
+
+
 def istruzioni():
  messagebox.showinfo("Guida all'uso","Per generare un haiku casuale cliccare il bottone 'Genera Haiku'. Se si desidera sostituire solo un verso dell'Haiku cliccare il pulsante 'cambia' posto sulla sua sinistra.")
 
-
 def autori():
- messagebox.showinfo("Autori","Avallone Enrico, Ippolito Gabriele, Lastrucci Davide, Migliaccio Giovanni")
+ messagebox.showinfo("Autori","Avallone Enrico, Ippolito Gabriele, Lastrucci Davide")
+
+def definizione():
+ messagebox.showinfo("Definizione","L'Haiku è un breve componimento a carattere lirico, composto da 17 sillabe disposte in tre gruppi rispettivamente di 5, 7 e 5, tipico della tradizione poetica giapponese.")
 
 
-#bottoni
+#configuro i bottoni
 
 button1 = tk.Button(root, text="  X  ", command=root.destroy, bg="gray64")
 riquadro.create_window(580, 15, window=button1)
@@ -115,20 +123,31 @@ buttonr3 = tk.Button(root, text="cambia", command=cambia_rigo3, font= ("NavajoWh
 riquadro2.create_window(10, 115, window=buttonr3)
 
 
-#menù a tendina
+#configuro il menù a tendina
 
 barrasuperiore= Menu(root)
 
-tendina= Menu(barrasuperiore)
-tendina.add_command(label="Guida all'uso", command=istruzioni)
-tendina.add_command(label="Autori", command=autori)
+tendina_info= Menu(barrasuperiore)
+tendina_info.add_command(label="Guida all'uso", command=istruzioni)
+tendina_info.add_command(label="Cos'è un Haiku?", command=definizione)
+tendina_info.add_command(label="Autori", command=autori)
 
-barrasuperiore.add_cascade(label="Info", menu=tendina)
-barrasuperiore.add_cascade(label="genera", command=genera_haiku)
+
+tendina_file= Menu(barrasuperiore)
+tendina_file.add_command(label="genera", command=genera_haiku)
+tendina_file.add_command(label="cancella", command=cancella_haiku)
+
+barrasuperiore.add_cascade(label="Info", menu=tendina_info)
+barrasuperiore.add_cascade(label="Edit", menu=tendina_file)
+
+for x in range(33):
+    barrasuperiore.add_separator() #separo la data dal resto (menù a tendina)
+
+barrasuperiore.add_cascade(label= time.strftime("%x"))
 
 root.config(menu=barrasuperiore)
 
 
-#creazione interfaccia
+#creo l'interfaccia
 
 root.mainloop()
