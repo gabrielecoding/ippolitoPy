@@ -1,7 +1,5 @@
-# per utilizzare il codice è necessario che tutti gli elementi scaricati
-# ("cinq1.txt"; "cinq2.txt"; "sette.txt"; "sfondo.jpg")
-# siano presenti nei Downloads all'interno di una cartella soprannominata "Haiku" 
-
+#Per utilizzare il codice è necessario che tutti gli elementi scaricati siano presenti nei Downloads all'interno di una cartella soprannominata "Haiku".
+#("cinq1.txt"; "cinq2.txt"; "sette.txt"; "sfondo.jpg")
 
 
 #librerie utilizzate
