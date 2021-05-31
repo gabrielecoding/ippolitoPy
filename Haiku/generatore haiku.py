@@ -1,4 +1,4 @@
-#Lavoro a cura di: Avallone Enrico, Ippolito Gabriele, Lastrucci Davide.
+#Lavoro a cura di: Avallone Enrico, Ippolito Gabriele, Lastrucci Davide, Migliaccio Giovanni.
 
 
 #Per utilizzare il codice è necessario che tutti gli elementi scaricati siano presenti nella cartella "Downloads".
@@ -93,7 +93,7 @@ def istruzioni():
 
 
 def autori():
- messagebox.showinfo("Autori","Avallone Enrico, Ippolito Gabriele, Lastrucci Davide")
+ messagebox.showinfo("Autori","Avallone Enrico, Ippolito Gabriele, Lastrucci Davide, Migliaccio Giovanni")
 
 
 #bottoni
