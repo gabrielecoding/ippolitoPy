@@ -35,6 +35,9 @@ class retta:
     def getC(self):
         return self.__c
 
+    def getM(self):
+        return self.__m
+
     def eqEsplicita(self):
         if self.__b == 0:
             return f"\n\n equazione forma esplicita: \n x = {- self.__c/ self.__a} \n (y= 0) \n\n ---------------------------"
@@ -87,20 +90,30 @@ class retta:
         else:
             return f"\ncoefficiente angolare: \n\n m= {self.__m} \n\n ---------------------------"
 
-    def intersezione(self, s):
-        '''
-        acquisita una retta s in input, questo metodo deve restituire il punto in comune 
-        (sottoforma di tupla), verificandone l'esistenza. Restituire "null" se le rette sono 
-        in parallelo oppure la lista __punti() se le rette dovessero coincidere. 
-        '''
-        return 0
+    def intersezione(cls, retta1, retta2):
+
+        if (retta.getA(retta1), retta.getB(retta1), retta.getC(retta1)) == (retta.getA(retta2), retta.getB(retta2), retta.getC(retta2)):
+            return "Le due rette sono coincidenti"
+        elif float(retta.getM(retta1)) == float(retta.getM(retta2)):
+            return "\n\nle due rette sono parallele non coincidenti"
+        else:
+            d = (retta.getA(retta1) * retta.getB(retta2)) - (retta.getA(retta2) * retta.getB(retta1))
+            d_x = (retta.getC(retta1) * retta.getB(retta2)) - (retta.getC(retta2) * retta.getB(retta1))
+            d_y = (retta.getA(retta1) * retta.getC(retta2)) - (retta.getA(retta2) * retta.getC(retta1))
+            return f" x= {d_x / d} y= {d_y / d}"
+
 
 tipo_valori = int(input("\n\nche tipi di valore stai dando? \n\n1) a, b, c\n2) due punti appartenenti alla retta\n3) coefficiente angolare ed un punto appartenente alla retta \n\ndigitare 1, 2 o 3 a seconda della risposta..."))
 
 n = (input("quante coppie di ordinate vuoi ricavare?..."))
+intersezione = (input("vuoi ricavare il punto di intersezione con un'altra retta?..."))
 
 if tipo_valori == 1:
-    retta1 = retta("input_abc", input("\ninserire valore a..."), input("inserire valore b..."), input("inserire valore c..."))
+    retta1 = retta("input_abc", int(input("\ninserire valore a...")), int(input("inserire valore b...")), int(input("inserire valore c...")))
+    if intersezione == "si":
+        retta2 = retta("input_abc", int(input("\n(seconda retta)inserire valore a...")), int(input("(seconda retta)inserire valore b...")), int(input("(seconda retta)inserire valore c...")))
+    else:
+        pass
 
     print(retta.eqImplicita(retta1))
 
@@ -108,10 +121,21 @@ if tipo_valori == 1:
 
     print(retta.m(retta1))
 
+    if intersezione == "si":
+        print("\n il punto di intersezione tra le due rette ha coordinate:\n")
+        print(retta.intersezione(retta, retta1, retta2))
+        print("\n-------------------------------------------------------------------")
+    else:
+        pass
+   
     print(retta.punti(retta1))
 
 elif tipo_valori == 2:
     retta1 = retta("input_2punti", int(input("inserie x del primo punto...")), int(input("inserie y del primo punto...")), int(input("inserie x del secondo punto...")), int(input("inserie y del secondo punto...")))  
+    if intersezione == "si":
+        retta2 = retta("input_2punti", int(input("\n(seconda retta)inserie x del primo punto...")), int(input("(seconda retta)inserie y del primo punto...")), int(input("(seconda retta)inserie x del secondo punto...")), int(input("(seconda retta)inserie y del secondo punto...")))
+    else:
+        pass
 
     print(retta.eqImplicita(retta1))
 
@@ -119,11 +143,22 @@ elif tipo_valori == 2:
 
     print(retta.m(retta1))
 
+    if intersezione == "si":
+        print("\n il punto di intersezione tra le due rette ha coordinate:\n")
+        print(retta.intersezione(retta, retta1, retta2))
+        print("\n-------------------------------------------------------------------")
+    else:
+        pass
+   
     print(retta.punti(retta1))
 
 
 elif tipo_valori == 3:
     retta1 = retta("input_coefficiente", int(input("inserie il valore del coefficiente angolare...")), int(input("inserie x del un punto...")), int(input("inserie y del un punto...")))
+    if intersezione == "si":
+        retta2 = retta("input_coefficiente", int(input("\n(seconda retta)inserie il valore del coefficiente angolare...")), int(input("(seconda retta)inserie x del un punto...")), int(input("(seconda retta)inserie y del un punto...")))
+    else:
+        pass
 
     print(retta.eqImplicita(retta1))
 
@@ -131,8 +166,11 @@ elif tipo_valori == 3:
 
     print(retta.m(retta1))
 
+    if intersezione == "si":
+        print("\n il punto di intersezione tra le due rette ha coordinate:\n")
+        print(retta.intersezione(retta, retta1, retta2))
+        print("\n-------------------------------------------------------------------")
+    else:
+        pass
+   
     print(retta.punti(retta1))
-
-
-
-            
