@@ -1,3 +1,6 @@
+
+
+
 class retta:
     def __init__(self, tipo = None, p1 = None, p2 = None, p3 = None, p4 = None):
         if(tipo == "input_abc"):
@@ -54,41 +57,38 @@ class retta:
         else:
             return f"---------------------------\n\n equazione forma implicita: \n {self.__a}x + {self.__b}y + {self.__c} = 0 "
 
-    def trovaY(self, x):
-        if self.__b == 0:
-            return f"\n\n equazione forma esplicita: \n x = {- self.__c/ self.__a} \n (y= 0) \n\n ---------------------------"
-        elif self.__a == 0:
-            return f"\n\n equazione forma esplicita: \n y = {- self.__c/ self.__b} \n (x= 0) \n\n ---------------------------"
-        else:
-            return f"\n\n equazione forma esplicita: \n y = {- self.__a / self.__b}x + {- self.__c/ self.__b} \n\n ---------------------------"
-
-    def punti(self):
-
-        inizio = - (1/2) * int(n)
-        fine = (1/2) * int(n)
+    def trovaY(self, i):
 
         if self.__a == 0:
-            for i in range(int(inizio), int(fine)):
-                x = i
-            self.__punti.append((x, - self.__c/ self.__b))
+            return - self.__c/ self.__b
         
         elif self.__b == 0:
-            for i in range(int(inizio), int(fine)):
-                y = i
-            self.__punti.append((- self.__c/ self.__a, y))
+            return - self.__c/ self.__a
+
+        else:
+            return (- self.__a * i - self.__c) / self.__b
+        
+
+    def punti(self):
+        n = int((input("\n\n quante coppie di ordinate vuoi ricavare?...")))
+
+        if self.__b == 0:
+            for i in range(0, n):
+                self.__punti.append((retta.trovaY(retta1, i), i))
 
         else:    
-            for i in range(int(inizio), int(fine)):
-                x = i
-                self.__punti.append ((x, (- self.__a * x - self.__c) / self.__b))
+            for i in range(0, n):
+                self.__punti.append ((i, retta.trovaY(retta1, i)))
         
-        print(self.__punti)
+        print("\n\n", self.__punti)
+
 
     def m(self):
         if self.__b == 0:
             return f"\ncoefficiente angolare: \n\n la retta è parallela all'asse delle y, il coefficiente angolare non è definito in alcun modo... \n\n ---------------------------"
         else:
             return f"\ncoefficiente angolare: \n\n m= {self.__m} \n\n ---------------------------"
+
 
     def intersezione(cls, retta1, retta2):
 
@@ -105,7 +105,7 @@ class retta:
 
 tipo_valori = int(input("\n\nche tipi di valore stai dando? \n\n1) a, b, c\n2) due punti appartenenti alla retta\n3) coefficiente angolare ed un punto appartenente alla retta \n\ndigitare 1, 2 o 3 a seconda della risposta..."))
 
-n = (input("quante coppie di ordinate vuoi ricavare?..."))
+
 intersezione = (input("vuoi ricavare il punto di intersezione con un'altra retta?..."))
 
 if tipo_valori == 1:
@@ -174,3 +174,20 @@ elif tipo_valori == 3:
         pass
    
     print(retta.punti(retta1))
+
+if intersezione == "si":
+    richiesta_grafico= input("\n\ndesideri ottenere la rappresentazione grafica delle rette? (ancora non sviluppato poichè non riesco ad installare matplotlib)")
+    if richiesta_grafico == "si":
+        plt.plot(retta.punti(retta1))
+        plt.plot(retta.punti(retta2))
+    else: 
+        pass
+
+else:
+    richiesta_grafico= input("\n\ndesideri ottenere la rappresentazione grafica della retta? (ancora non sviluppato poichè non riesco ad installare matplotlib)")
+    if richiesta_grafico == "si":
+        plt.plot(retta.punti(retta1))
+    else: 
+        pass
+
+
