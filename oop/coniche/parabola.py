@@ -73,12 +73,49 @@ while True:
                     pass
                 
                 elif self.__a > 0:
-                    return f"\nla parabola è rivolta verso l'alto \n\n equazione parabola:\n y = {self.__a}x^2 + {self.__b}x + {self.__c} "
+                    if self.__b < 0 and self.__c < 0:
+                        return f"\nla parabola è rivolta verso l'alto \n\n equazione parabola:\n y = {self.__a}x^2 {self.__b}x {self.__c} "
+                    elif self.__b < 0 and self.__c > 0:
+                        return f"\nla parabola è rivolta verso l'alto \n\n equazione parabola:\n y = {self.__a}x^2 {self.__b}x + {self.__c} "
+                    elif self.__c < 0 and self.__b > 0:
+                        return f"\nla parabola è rivolta verso l'alto \n\n equazione parabola:\n y = {self.__a}x^2 + {self.__b}x {self.__c} "
+                    else:
+                        return f"\nla parabola è rivolta verso l'alto \n\n equazione parabola:\n y = {self.__a}x^2 + {self.__b}x + {self.__c} "
                 
                 elif self.__a < 0:
-                    return f"\nla parabola è rivolta verso il basso \n\n equazione parabola:\n y = {self.__a}x^2 + {self.__b}x + {self.__c} "
+                    if self.__b < 0 and self.__c < 0:
+                        return f"\nla parabola è rivolta verso il basso \n\n equazione parabola:\n y = {self.__a}x^2 {self.__b}x {self.__c} "
+                    elif self.__b < 0 and self.__c > 0:
+                        return f"\nla parabola è rivolta verso il basso \n\n equazione parabola:\n y = {self.__a}x^2 {self.__b}x + {self.__c} "
+                    elif self.__c < 0 and self.__b > 0:
+                        return f"\nla parabola è rivolta verso il basso \n\n equazione parabola:\n y = {self.__a}x^2 + {self.__b}x {self.__c} "
+                    else:
+                        return f"\nla parabola è rivolta verso il basso \n\n equazione parabola:\n y = {self.__a}x^2 + {self.__b}x + {self.__c} "
+            
             elif tipo_valori == 2:
-                return f"\n equazione parabola:\n y = {self.valorea}x^2 + {self.valoreb}x + {self.valorec}"
+                if self.valorea == 0:
+                    pass
+                
+                elif self.valorea > 0:
+                    if self.valoreb < 0 and self.valorec < 0:
+                        return f"\nla parabola è rivolta verso l'alto \n\n equazione parabola:\n y = {self.valorea}x^2 {self.valoreb}x {self.valorec} "
+                    elif self.valoreb < 0 and self.valorec> 0:
+                        return f"\nla parabola è rivolta verso l'alto \n\n equazione parabola:\n y = {self.valorea}x^2 {self.valoreb}x + {self.valorec} "
+                    elif self.valorec < 0 and self.valoreb > 0:
+                        return f"\nla parabola è rivolta verso l'alto \n\n equazione parabola:\n y = {self.valorea}x^2 + {self.valoreb}x {self.valorec} "
+                    else:
+                        return f"\nla parabola è rivolta verso l'alto \n\n equazione parabola:\n y = {self.valorea}x^2 + {self.valoreb}x + {self.valorec} "
+                
+                elif self.valorea < 0:
+                    if self.valoreb < 0 and self.valorec < 0:
+                        return f"\nla parabola è rivolta verso il basso \n\n equazione parabola:\n y = {self.valorea}x^2 {self.valoreb}x {self.valorec} "
+                    elif self.valoreb < 0 and self.valorec > 0:
+                        return f"\nla parabola è rivolta verso il basso \n\n equazione parabola:\n y = {self.valorea}x^2 {self.valoreb}x + {self.valorec} "
+                    elif self.valorec < 0 and self.valoreb > 0:
+                        return f"\nla parabola è rivolta verso il basso \n\n equazione parabola:\n y = {self.valorea}x^2 + {self.valoreb}x {self.valorec} "
+                    else:
+                        return f"\nla parabola è rivolta verso il basso \n\n equazione parabola:\n y = {self.valorea}x^2 + {self.valoreb}x + {self.valorec} "
+                
 
 
         def fuoco(self):
