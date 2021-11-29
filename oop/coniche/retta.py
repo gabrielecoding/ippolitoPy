@@ -73,11 +73,13 @@ class retta:
         n = int((input("\n\n quante coppie di ordinate vuoi ricavare?...")))
 
         if self.__b == 0:
+            #i = y
             for i in range(0, n):
                 self.__punti.append((retta.trovaY(retta1, i), i))
 
         else:    
             for i in range(0, n):
+                #i= x
                 self.__punti.append ((i, retta.trovaY(retta1, i)))
         
         print("\n\n", self.__punti)
@@ -174,20 +176,3 @@ elif tipo_valori == 3:
         pass
    
     print(retta.punti(retta1))
-
-if intersezione == "si":
-    richiesta_grafico= input("\n\ndesideri ottenere la rappresentazione grafica delle rette? (ancora non sviluppato poichè non riesco ad installare matplotlib)")
-    if richiesta_grafico == "si":
-        plt.plot(retta.punti(retta1))
-        plt.plot(retta.punti(retta2))
-    else: 
-        pass
-
-else:
-    richiesta_grafico= input("\n\ndesideri ottenere la rappresentazione grafica della retta? (ancora non sviluppato poichè non riesco ad installare matplotlib)")
-    if richiesta_grafico == "si":
-        plt.plot(retta.punti(retta1))
-    else: 
-        pass
-
-
