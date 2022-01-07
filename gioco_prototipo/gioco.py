@@ -53,6 +53,7 @@ def inizializza():
     clock = 0
     firerate = 0
     
+    
 
 
 def aggiorna():
@@ -69,7 +70,7 @@ def disegna_oggetti():
     else:
         all_sprites.draw(SCHERMO)
 
-    if allsprites == "vuoto":
+    if nemico == False:
         all_enemies.empty()
         pass
     else:
@@ -137,7 +138,7 @@ while True:
 
         if event.type == pygame.USEREVENT: 
             clock += 1
-            if clock == 10:
+            if clock == 5:
                 clock= 0
                 nemico = True
                 spr_ghost = pygame.sprite.Sprite(all_enemies)
@@ -146,11 +147,7 @@ while True:
                 
                 spr_ghost.rect.topright= (SCHERMO.get_width()-30, random.randrange(0, 288))
                 
-    if nemico == True:
-        if spr_proiettile.rect == spr_ghost.rect:
-                allghost = "vuoto"
-        else :
-            allghost= "pieno"
+    
     
     if lancio == True:
         if spr_proiettile.rect.x < SCHERMO.get_width()-10:
