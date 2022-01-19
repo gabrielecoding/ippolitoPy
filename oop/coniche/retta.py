@@ -117,13 +117,15 @@ class retta:
             return self.__m
 
     
-    def intersezione(self, s):#devo ancora capire bene come fare
-        '''
-        acquisita una retta s in input, questo metodo deve restituire il punto in comune 
-        (sottoforma di tupla), verificandone l'esistenza. Restituire "null" se le rette sono 
-        in parallelo oppure la lista __punti() se le rette dovessero coincidere. 
-        '''
-        return 0
+    def intersezione(self, s):#prendo le due rette
+
+        #trovo l'intersezione tra le due liste di punti
+        a = s.punti()
+        b = self.punti()
+        c = list(set(a).intersection(b))
+        return c
+
+
 
 
 #creo un dizionario dove saranno inserite tutte le rette create in modo tale da poterle usare in più momenti
@@ -253,11 +255,58 @@ while True:
                     print("Errore")
             break
         
-        elif menù == 3:# è stato scelto di trovare l'intersezione tra due rette   ---  da completare
+        elif menù == 3:# è stato scelto di trovare l'intersezione tra due rette
 
-            r_intersezione_1 = input("inserire il nome della prima retta\n-->")
-            r_intersezione_2 = input("\ninserire il nome della seconda retta\n-->")
-            print("\ndevo ancora capire come fare")
+            nome_retta_attiva = input("inserire il nome della prima retta\n-->")#chiedo qual'è la prima retta di cui si vuole ricavare l'intersezione
+            nome_retta_attiva1 = (nome_retta_attiva, "1")
+            nome_retta_attiva2 = (nome_retta_attiva, "2")
+            tipo_retta_attiva = (nome_retta_attiva, "0")
+
+            nome_intersezione = input("\ninserire il nome della seconda retta\n-->")#chiedo qual'è la seconda retta di cui si vuole ricavare l'intersezione
+            nome_intersezione1 = (nome_intersezione, "1")
+            nome_intersezione2 = (nome_intersezione, "2")
+            tipo_intersezione = (nome_intersezione, "0")
+
+            if rette_dict[tipo_retta_attiva] == "input_coefficiente":
+                #se la tipologia di dati forniti per quanto riguarda la retta scelta sono le coordinate del coefficiente
+                retta_attiva = retta(rette_dict[tipo_retta_attiva], rette_dict[nome_retta_attiva], rette_dict[nome_retta_attiva1], rette_dict[nome_retta_attiva2])
+            
+            if rette_dict[tipo_retta_attiva] == "input_2punti":
+                #se la tipologia di dati forniti per quanto riguarda la retta scelta sono le coordinate di due punti
+                nome_retta_attiva3 = (nome_retta_attiva, "3")#richiamo anche il 4 valore che nelle altre tipologie non è presente
+                retta_attiva = retta(rette_dict[tipo_retta_attiva], rette_dict[nome_retta_attiva], rette_dict[nome_retta_attiva1], rette_dict[nome_retta_attiva2], rette_dict[nome_retta_attiva3])
+            
+            if rette_dict[tipo_retta_attiva] == "input_abc":
+                #se la tipologia di dati forniti per quanto riguarda la retta scelta sono a, b e c
+                retta_attiva = retta(rette_dict[tipo_retta_attiva], rette_dict[nome_retta_attiva], rette_dict[nome_retta_attiva1], rette_dict[nome_retta_attiva2])
+
+
+
+            if rette_dict[tipo_intersezione] == "input_coefficiente":
+                #se la tipologia di dati forniti per quanto riguarda la retta scelta sono le coordinate del coefficiente
+                intersezione_attiva = retta(rette_dict[tipo_intersezione], rette_dict[nome_intersezione], rette_dict[nome_intersezione1], rette_dict[nome_intersezione2])
+            
+            if rette_dict[tipo_intersezione] == "input_2punti":
+                #se la tipologia di dati forniti per quanto riguarda la retta scelta sono le coordinate di due punti
+                nome_intersezione3 = (nome_intersezione, "3")#richiamo anche il 4 valore che nelle altre tipologie non è presente
+                intersezione_attiva = retta(rette_dict[tipo_intersezione], rette_dict[nome_intersezione], rette_dict[nome_retta_attiva1], rette_dict[nome_intersezione2], rette_dict[nome_intersezione3])
+            
+            if rette_dict[tipo_intersezione] == "input_abc":
+                #se la tipologia di dati forniti per quanto riguarda la retta scelta sono a, b e c
+                intersezione_attiva = retta(rette_dict[tipo_intersezione], rette_dict[nome_intersezione], rette_dict[nome_intersezione1], rette_dict[nome_intersezione2])
+            
+            n = 20 #definisco la quantità di coppie di coordinate da mostrare nel caso le due rette fossero parallele
+            
+            print("\n\npunto di intersezione:  ",retta_attiva.intersezione(intersezione_attiva),"\n\n")
+
+            #dopo aver mostrato le info chiedo se si vuole tornare al menù principale dove si possono analizzare altre rette o crearne di nuove
+            while True:
+                scelta=input("\n\ndigita 'm' per tornare al menù principale\n-->")
+                if scelta == "m":
+                    scelta = ""
+                    break
+                else: 
+                    print("Errore")
             break
 
         else:
