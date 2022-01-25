@@ -6,7 +6,7 @@ import os
 from pygame.constants import K_0, K_DOWN, K_LEFT, K_RIGHT, K_SPACE, K_UP, KEYDOWN, KEYUP, K_a, K_d, K_s, K_w
 from pygame.time import Clock
 
-os.chdir ("gioco_prototipo")
+os.chdir ("ippolitoPy/gioco_prototipo")
 
 pygame.init()
 random.seed()
